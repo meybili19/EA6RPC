@@ -1,0 +1,74 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "PHP RPC API",
+    "version": "1.0.0",
+    "description": "A simple API that executes RPC with a helloWorld function"
+  },
+  "paths": {
+    "/": {
+      "post": {
+        "summary": "RPC call to say Hello",
+        "operationId": "helloWorld",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "body",
+            "description": "Description that you want to see",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "method": {
+                  "type": "string",
+                  "example": "helloWorld"
+                },
+                "params": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "example": "World, from PHP using architecture style RPC (Remote Procedure Call)"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "jsonrpc": {
+                  "type": "string",
+                  "example": "2.0"
+                },
+                "result": {
+                  "type": "string",
+                  "example": "Hello World!"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "jsonrpc": {
+                  "type": "string",
+                  "example": "2.0"
+                },
+                "error": {
+                  "type": "string",
+                  "example": "Method not found"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
